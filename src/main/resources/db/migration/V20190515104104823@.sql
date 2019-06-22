@@ -5,4 +5,7 @@ CREATE TABLE book (
   price NUMERIC NOT NULL
 );
 
+INSERT INTO book (title, isbn, price) VALUES ('Clean Code: A Handbook of Agile Software Craftsmanship', '9780132350884', 31.26);
 INSERT INTO book (title, isbn, price) VALUES ('Design Patterns: Elements of Reusable Object-Oriented Software', '9780201633610', 50.38);
+INSERT INTO book (title, isbn, price) VALUES ('Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions', '9780321200686', 40.73);
+
