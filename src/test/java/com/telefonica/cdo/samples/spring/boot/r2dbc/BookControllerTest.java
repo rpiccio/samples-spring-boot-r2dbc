@@ -58,7 +58,7 @@ public class BookControllerTest {
         webClient.patch()
             .uri("/books")
             .contentType(MediaType.APPLICATION_JSON)
-            .body(BodyInserters.fromObject(updates))
+            .body(BodyInserters.fromValue(updates))
             .exchange()
             .expectStatus()
             .is5xxServerError();
@@ -114,7 +114,7 @@ public class BookControllerTest {
         webClient.patch()
             .uri("/booksT")
             .contentType(MediaType.APPLICATION_JSON)
-            .body(BodyInserters.fromObject(updates))
+            .body(BodyInserters.fromValue(updates))
             .exchange()
             .expectStatus()
             .is5xxServerError();
@@ -157,6 +157,12 @@ public class BookControllerTest {
                 "spring.datasource.url=" + buildJdbcUrl(),
                 "spring.datasource.username=" + db.getUsername(),
                 "spring.datasource.password=" + db.getPassword()
+            ).applyTo(configurableApplicationContext.getEnvironment());
+
+            TestPropertyValues.of(
+                "spring.flyway.url=" + buildJdbcUrl(),
+                "spring.flyway.username=" + db.getUsername(),
+                "spring.flyway.password=" + db.getPassword()
             ).applyTo(configurableApplicationContext.getEnvironment());
 
             TestPropertyValues.of(

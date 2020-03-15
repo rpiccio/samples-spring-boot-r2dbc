@@ -1,6 +1,6 @@
 package com.telefonica.cdo.samples.spring.boot.r2dbc;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,12 +22,12 @@ public class BookController {
     }
 
     @PatchMapping(path = "/books", consumes = "application/json", produces = "application/json")
-    public Flux<Book> update(@RequestBody ArrayList<UpdateBookRequest> updates) throws Exception {
+    public Flux<Book> update(@RequestBody List<UpdateBookRequest> updates) {
         return service.update(updates);
     }
 
     @PatchMapping(path = "/booksT", consumes = "application/json", produces = "application/json")
-    public Flux<Book> updateTransactional(@RequestBody ArrayList<UpdateBookRequest> updates) throws Exception {
+    public Flux<Book> updateTransactional(@RequestBody List<UpdateBookRequest> updates) {
         return service.updateTransactional(updates);
     }
 

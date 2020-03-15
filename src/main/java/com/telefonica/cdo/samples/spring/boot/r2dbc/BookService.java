@@ -18,20 +18,20 @@ public class BookService {
         return repository.findAll();
     }
 
-    public Flux<Book> update(List<UpdateBookRequest> updates) throws Exception {
+    public Flux<Book> update(List<UpdateBookRequest> updates) {
 
-        return Flux.fromIterable(updates).flatMap(update -> {
-            return repository.findById(update.getId()).map(book -> {
-                return book.setIsbn(update.getIsbn());
-            }).flatMap(book -> {
-                return repository.save(book);
-            });
-        }).thenMany(repository.findAll());
+        return Flux.fromIterable(updates).flatMap(update ->
+            repository.findById(update.getId()).map(book ->
+                book.setIsbn(update.getIsbn())
+            ).flatMap(book ->
+                repository.save(book)
+            )
+        ).thenMany(repository.findAll());
 
     }
 
     @Transactional
-    public Flux<Book> updateTransactional(List<UpdateBookRequest> updates) throws Exception {
+    public Flux<Book> updateTransactional(List<UpdateBookRequest> updates) {
         return update(updates);
     }
 
