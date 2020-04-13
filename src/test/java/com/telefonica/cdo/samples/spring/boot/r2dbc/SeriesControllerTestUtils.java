@@ -4,14 +4,13 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 
-import org.junit.Test;
+import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class SeriesControllerTest extends TestSupport {
+public class SeriesControllerTestUtils {
 
-    @Test
-    public void test() throws Exception {
+    public static void test(WebTestClient webClient) throws Exception {
 
         webClient.get().uri("/series/1").exchange().expectStatus().isOk().expectBody().consumeWith(x -> {
 

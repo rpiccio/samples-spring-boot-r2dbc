@@ -6,17 +6,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
 import org.springframework.http.MediaType;
+import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class IssueControllerTest extends TestSupport {
+public class IssueControllerTestUtils {
 
-    @Test
-    public void test() throws Exception {
+    public static void test(WebTestClient webClient) throws Exception {
 
         UpdateIssueRequest update1 = new UpdateIssueRequest();
 
