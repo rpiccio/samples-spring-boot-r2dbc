@@ -1,29 +1,24 @@
 package com.telefonica.cdo.samples.spring.boot.r2dbc;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import lombok.Getter;
 import lombok.Setter;
 
-@Table("book")
-public class Book {
+@Table("publisher")
+public class Publisher {
 
+    @Column("id")
     @Getter
     @Id
     @Setter
     private Long id;
 
+    @Column("name")
     @Getter
     @Setter
-    private String title;
-
-    @Getter
-    @Setter
-    private String isbn;
-
-    @Getter
-    @Setter
-    private Double price;
+    private String name;
 
 }
