@@ -49,6 +49,9 @@
     <profiles>
         <profile>
             <id>mysql</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <dependencies>
                 <dependency>
                     <groupId>dev.miku</groupId>
@@ -69,6 +72,9 @@
         </profile>
         <profile>
             <id>postgres</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
             <dependencies>
                 <dependency>
                     <groupId>io.r2dbc</groupId>
