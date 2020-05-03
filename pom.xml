@@ -10,8 +10,8 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>2.3.0.M4</spring-boot.version>
-        <testcontainers.version>1.13.0</testcontainers.version>
+        <spring-boot.version>2.3.0.RC1</spring-boot.version>
+        <testcontainers.version>1.14.1</testcontainers.version>
     </properties>
     <dependencyManagement>
         <dependencies>
