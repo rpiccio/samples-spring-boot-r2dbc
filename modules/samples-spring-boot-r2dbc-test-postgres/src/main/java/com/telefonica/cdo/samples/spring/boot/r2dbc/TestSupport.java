@@ -1,4 +1,4 @@
-package com.telefonica.cdo.samples.spring.boot.r2dbc.mysql;
+package com.telefonica.cdo.samples.spring.boot.r2dbc;
 
 import org.junit.ClassRule;
 import org.junit.runner.RunWith;
@@ -12,7 +12,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
 
 @AutoConfigureWebTestClient
 @ContextConfiguration(initializers = {TestSupport.Initializer.class})
@@ -22,7 +22,7 @@ import org.testcontainers.containers.MySQLContainer;
 public abstract class TestSupport {
 
     @ClassRule
-    public static MySQLContainer<?> database = new MySQLContainer<>("mysql:8");
+    public static PostgreSQLContainer<?> database = new PostgreSQLContainer<>("postgres:10");
 
     @Autowired
     protected WebTestClient webClient;
@@ -41,7 +41,7 @@ public abstract class TestSupport {
                 "spring.flyway.url=" + buildJdbcUrl(),
                 "spring.flyway.username=" + database.getUsername(),
                 "spring.flyway.password=" + database.getPassword(),
-                "spring.flyway.locations=" + "classpath:db/migration/mysql"
+                "spring.flyway.locations=" + "classpath:db/migration/postgres"
             ).applyTo(configurableApplicationContext.getEnvironment());
 
             TestPropertyValues.of(
@@ -53,11 +53,11 @@ public abstract class TestSupport {
         }
 
         private String buildJdbcUrl() {
-            return String.format("jdbc:mysql://%s:%d/%s", database.getContainerIpAddress(), database.getMappedPort(3306), database.getDatabaseName());
+            return String.format("jdbc:postgresql://%s:%d/%s", database.getContainerIpAddress(), database.getMappedPort(5432), database.getDatabaseName());
         }
 
         private String buildR2dbcUrl() {
-            return String.format("r2dbc:mysql://%s:%d/%s", database.getContainerIpAddress(), database.getMappedPort(3306), database.getDatabaseName());
+            return String.format("r2dbc:postgresql://%s:%d/%s", database.getContainerIpAddress(), database.getMappedPort(5432), database.getDatabaseName());
         }
 
     }
